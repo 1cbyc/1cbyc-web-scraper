@@ -19,6 +19,8 @@ def scrape_page(url):
             href = link.get('href')
             if href:
                 save_to_db(href)
+                #i think i should add a way to let me know it did successfully with a print statement
+                print(f"chairmo e don save o: {href}")
     else:
         print(f"hey chief i could not retrieve the page o. Status code: {response.status_code}")
 

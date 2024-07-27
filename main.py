@@ -3,7 +3,7 @@ from scraper.database import close_connection
 
 
 def main():
-    base_url = 'https://www.sportybet.com/ng/'  # will modify later to take data from a list of url
+    base_url = 'https://landwey.ng/get-started/'  # will modify later to take data from a list of url
     num_pages = 5  # can adjust the number of pages to scrape
     scrape_multiple_pages(base_url, num_pages)
 
