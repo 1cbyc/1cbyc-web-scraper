@@ -8,6 +8,7 @@
 - Can handle pagination
 - can store scraped data in an SQLite db (adding support for more soon)
 - can mimic a web browser by setting custom headers
+- (not to be a brag but) i added a way to classify the scraped data as individual texts
 - **_adding more features soon_**
 
 ## For Installation
