@@ -50,8 +50,28 @@ python main.py
 from scraper.database import print_all_data
 print_all_data()
 ```
+### In my defense don't be like me, just do this:
 
-#### You can open the scraped_data.db file using an SQLite browser to inspect the data.
+## get a db browser for SQLite atleast
+
+just download and install the db Browser for SQLite:
+
+1. go to the [DB Browser for SQLite website](https://sqlitebrowser.org/).
+2. then, download and install the version suitable for your pc.
+
+### so, open the SQLite db File:
+
+1. open the DB browser.
+2. click "Open Database" and go to the `data` dir.
+3. then, select the desired `.db` file you wanna check and click "open".
+
+### go through the data:
+
+1. you can use the "browse data" tab to view the contents of the `data` table.
+2. you can also run SQL queries using the "execute SQL" tab.
+
+#### All in all, you now know you can open the scraped_data.db file using an SQLite browser to inspect the data and not use my shitty method.
+
 
 ## Contributing
 
