@@ -9,6 +9,7 @@
 - can store scraped data in an SQLite db (adding support for more soon)
 - can mimic a web browser by setting custom headers
 - (not to be a brag but) i added a way to classify the scraped data as individual texts
+- (since i have lazy pals) i added a way to read the sqlite file without stressing about sqlite on your machine
 - **_adding more features soon_**
 
 ## For Installation
