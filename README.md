@@ -49,6 +49,8 @@ from scraper.database import print_all_data
 print_all_data()
 ```
 
-## Alternatively,
+#### You can open the scraped_data.db file using an SQLite browser to inspect the data.
 
-open the scraped_data.db file using an SQLite browser to inspect the data.
+## Contributing
+
+Honestly, i want you guys to fork this repository, make improvements, and submit pull requests.
