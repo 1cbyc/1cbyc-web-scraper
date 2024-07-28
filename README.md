@@ -4,8 +4,8 @@
 
 ## Features
 
-- Can scrape from multiple web pages
-- Can handle pagination
+- can scrape from multiple web pages
+- can handle pagination
 - can store scraped data in an SQLite db (adding support for more soon)
 - can mimic a web browser by setting custom headers
 - (not to be a brag but) i added a way to classify the scraped data as individual texts
@@ -14,47 +14,48 @@
 
 ## For Installation
 
-1. Clone my repository.
+1. just clone my repository.
 
 ```bash
 git clone https://github.com/1cbyc/1cbyc-web-scraper.git
 cd 1cbyc-web-scraper
 ```
 
-2. Clone my repository.
+2. then download the required packages.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## This is how to use it
 
-1. Update the base_url and num_pages variables in main.py to match the target website and the number of pages you want to scrape.
+1. simply update the base_url and num_pages variables in main.py to match the target website and the number of pages you want to scrape.
 
 ```
 base_url = 'http://nsisong.com/page/'  # you can replace with the actual base URL
 num_pages = 5  # adjust the number of pages to scrape based on the target website
 ```
-2. Run the scraper.
+2. then, run the scraper.
 
 ```
 python main.py
 ```
 
-3. Check the console output to see the progress and results of the scraping.
+3. make sure to check the console output to see the progress and results of the scraping.
 
 
-4. To view the scraped data, you can use the provided function in database.py to print all data:
+4. also, to view the scraped data, you can use the provided function in database.py to print all data:
 
 ```
 from scraper.database import print_all_data
 print_all_data()
 ```
-### In my defense don't be like me, just do this:
+
+### i gave a shorter way to read the data by adding a read_db.py file to this project but i think i should not be an advocate for shortcuts. so, just do this:
 
 ## get a db browser for SQLite atleast
 
-just download and install the db Browser for SQLite:
+like just download and install the db browser for SQLite:
 
 1. go to the [DB Browser for SQLite website](https://sqlitebrowser.org/).
 2. then, download and install the version suitable for your pc.
@@ -73,6 +74,9 @@ just download and install the db Browser for SQLite:
 #### All in all, you now know you can open the scraped_data.db file using an SQLite browser to inspect the data and not use my shitty method.
 
 
-## Contributing
+## As for Contributing
 
-Honestly, i want you guys to fork this repository, make improvements, and submit pull requests.
+to be honest, i want you guys to fork this repository, make improvements, and submit pull requests. probably we'd get a v2.1 release faster. suggest new features too, and i promise to work on it (if it makes sense).
+
+
+# PLEASE USE IT FOR EDUCATIONAL PURPOSES O!
