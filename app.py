@@ -6,7 +6,11 @@ from scraper.db_utils import save_to_db, fetch_all_data
 
 app = Flask(__name__)
 
-
+# since it seem like people might not use https:// or http:// then i added this:
+def ensure_scheme(url):
+    if not url.startswith(('http://', 'https://')):
+        return 'http://' + url
+    return url
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
