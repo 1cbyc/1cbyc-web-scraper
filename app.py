@@ -12,7 +12,7 @@ def index():
         num_pages = int(request.form['num_pages'])
 
         if not base_url or num_pages <= 0:
-            return "Invalid input, please try again."
+            return "this entry no valid o, try am again."
 
         # Start scraping
         scrape_multiple_pages(base_url, num_pages)
