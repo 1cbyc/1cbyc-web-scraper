@@ -20,7 +20,13 @@ def index():
 
     return render_template('index.html')
 
-@app.route
+@app.route('/download/<db_name>')
+def download(db_name):
+    file_path = os.path.join('data', db_name)
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "Ah no see the file o."
 
 
 if __name__ == '__main__':
