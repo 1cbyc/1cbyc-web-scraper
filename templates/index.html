@@ -14,7 +14,14 @@
             <label for="num_pages">Number of Pages:</label>
             <input type="number" id="num_pages" name="num_pages" required>
             <br>
-            <input type="submit" value="Start Scraping">
+<!--            <input type="submit" value="Start Scraping">-->
+            <button type="submit">Start Scraping</button>
         </form>
+
+        {% if db_name %}
+        <h2>Scraping Completed</h2>
+        <p>
+            Download the scraped data: <a 
+        </p>
     </body>
 </html>
