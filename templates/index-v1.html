@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Scraper - Nsisong</title>
+    </head>
+    <body>
+        <h1>Nsisong | Web Scraper</h1>
+        <form method="post" action="/">
+            <label for="base_url">Base URL:</label>
+            <input type="text" id="base_url" name="base_url" required>
+            <br>
+            <label for="num_pages">Number of Pages:</label>
+            <input type="number" id="num_pages" name="num_pages" required>
+            <br>
+<!--            <input type="submit" value="Start Scraping">-->
+            <button type="submit">Start Scraping</button>
+        </form>
+
+        {% if db_name %}
+        <h2>Scraping Completed</h2>
+        <p>
+            Download the scraped data: <a href="{{ url_for('download', db_name=db_name) }}">Download Now</a>
+        </p>
+        {% endif %}
+    </body>
+</html>
