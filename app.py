@@ -14,11 +14,11 @@ def index():
         if not base_url or num_pages <= 0:
             return "this entry no valid o, try am again."
 
-        # Start scraping
-        scrape_multiple_pages(base_url, num_pages)
-        return redirect(url_for('index'))
-
-        
+        # # Start scraping
+        # scrape_multiple_pages(base_url, num_pages)
+        # return redirect(url_for('index'))
+        data = scrape_multiple_pages(base_url, num_pages)
+        db_name = save_to_db(base_url, data)
 
         return render_template('index.html', db_name=db_name)
 
