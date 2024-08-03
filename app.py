@@ -18,6 +18,10 @@ def index():
         scrape_multiple_pages(base_url, num_pages)
         return redirect(url_for('index'))
 
+        
+
+        return render_template('index.html', db_name=db_name)
+
     return render_template('index.html')
 
 @app.route('/download/<db_name>')
