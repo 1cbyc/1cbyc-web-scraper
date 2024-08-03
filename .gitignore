@@ -126,3 +126,145 @@ data/
 secrets.json
 api_keys.json
 config.py
+commit.py
+
+# created subfolder
+v1-CLI/data
+#v1-CLI/
+# Ignore any other sensitive information
+v1-CLI/secrets.json
+v1-CLI/api_keys.json
+v1-CLI/config.py
+v1-CLI/commit.py
+
+v1-CLI/.env
+v1-CLI/.envrc
+v1-CLI/venv/
+v1-CLI/env/
+v1-CLI/ENV/
+v1-CLI/venv.bak/
+v1-CLI/venv/
+
+v1-CLI/__pycache__/
+v1-CLI/*.pyc
+# Byte-compiled / optimized / DLL files
+v1-CLI/__pycache__/
+v1-CLI/*.py[cod]
+v1-CLI/*$py.class
+
+# Distribution / packaging
+v1-CLI/.Python
+v1-CLI/build/
+v1-CLI/develop-eggs/
+v1-CLI/dist/
+v1-CLI/downloads/
+v1-CLI/eggs/
+v1-CLI/.eggs/
+v1-CLI/lib/
+v1-CLI/lib64/
+v1-CLI/parts/
+v1-CLI/sdist/
+v1-CLI/var/
+v1-CLI/wheels/
+v1-CLI/share/python-wheels/
+v1-CLI/*.egg-info/
+v1-CLI/.installed.cfg
+v1-CLI/*.egg
+v1-CLI/MANIFEST
+
+# Installer logs
+v1-CLI/pip-log.txt
+v1-CLI/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+v1-CLI/htmlcov/
+v1-CLI/.tox/
+v1-CLI/.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+nosetests.xml
+coverage/
+
+# Environment variables
+.env
+.envrc
+venv/
+env/
+ENV/
+venv.bak/
+venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Virtual environment
+.vscode/settings.json
+*.code-workspace
+
+# Logs
+logs/
+*.log
+
+# Config files
+config/
+*.ini
+*.cfg
+
+# Data files
+data/
+*.csv
+*.json
+*.xls
+*.xlsx
+
+# Keys and secrets
+*.pem
+*.key
+secrets/
+credentials/
+
+# Database
+*.db
+*.sqlite
+
+# Compiled files
+*.so
+*.dll
+*.dylib
+
+# Packages
+*.jar
+*.war
+
+# C extensions
+*.so
+
+# Cython debug symbols
+cython_debug/
+
+# Binary data
+*.bin
+
+# Trading bot specific
+bot_logs/
+backtests/
+strategies/
+data/
