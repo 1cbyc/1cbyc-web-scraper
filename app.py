@@ -31,7 +31,7 @@ def index():
     return render_template('index.html')
 
 # @app.route('/download/<db_name>')
-@app.route('/<db_name>')
+@app.route('/download/<db_name>')
 def download(db_name):
     file_path = os.path.join('data', db_name)
     if os.path.exists(file_path):
