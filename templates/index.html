@@ -173,7 +173,7 @@
         completionMessage.style.display = "block";
     }
 
-    // Handle form submission
+    {% comment %} // Handle form submission
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
 
@@ -193,29 +193,29 @@
         .catch(error => {
             console.error('Error:', error); // Log any errors
         });
+    }); {% endcomment %}
+
+        // Handle form submission
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this);
+
+        fetch('/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.db_name) {
+                var downloadUrl = `/download/${data.db_name}`;
+                showCompletionMessage(downloadUrl);
+            } else {
+                console.error('Error:', data);
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
-
-    // Handle form submission
-document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    var formData = new FormData(this);
-
-    fetch('/', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.db_name) {
-            var downloadUrl = `/download/${data.db_name}`;
-            showCompletionMessage(downloadUrl);
-        } else {
-            console.error('Error:', data);
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
 
 
     // When the user clicks on <span> (x), close the modal
