@@ -188,6 +188,8 @@
         .then(response => response.json())  // Expect JSON response with db_name
         .then(data => {
             var downloadUrl = '/download/' + data.db_name; // Construct download URL
+            var downloadUrl = '/download/' + data.db_name; // Construct download URL
+
             showCompletionMessage(downloadUrl); // Update the link with the correct download URL
         })
         .catch(error => {
