@@ -1,6 +1,7 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, send_file
 from scraper.scraper import scrape_multiple_pages
+from scraper.db_utils import save_to_db, fetch_all_data
 
 
 app = Flask(__name__)
