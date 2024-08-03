@@ -1,8 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+import os
+import sqlite3
+from datetime import datetime
 # from .database import save_to_db
 # decided to update the scraper script this time to perform the multiple tasks of showing time stamp and as well saving each site as a db file by adding a whole new "from .database import get_db_path, create_connection, save_to_db, close_connection"
-from .database import get_db_path, create_connection, save_to_db, close_connection
+# from .database import get_db_path, create_connection, save_to_db, close_connection
 
 # now i have to add the "cursor"  to the url in the scrape page function instead of just "url"
 def scrape_page(url, cursor):
