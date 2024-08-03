@@ -21,7 +21,7 @@
         {% if db_name %}
         <h2>Scraping Completed</h2>
         <p>
-            Download the scraped data: <a 
+            Download the scraped data: <a href="{{ url_for('download', db_name=db_name) }}">Download Now</a>
         </p>
     </body>
 </html>
