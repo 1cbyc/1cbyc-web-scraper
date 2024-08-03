@@ -7,8 +7,7 @@ from datetime import datetime
 # decided to update the scraper script this time to perform the multiple tasks of showing time stamp and as well saving each site as a db file by adding a whole new "from .database import get_db_path, create_connection, save_to_db, close_connection"
 # from .database import get_db_path, create_connection, save_to_db, close_connection
 
-# now i have to add the "cursor"  to the url in the scrape page function instead of just "url"
-def scrape_page(url, cursor):
+def scrape_page(url):
     # i want to mimic a browser cause of the 403 error, so i will add a headers
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -17,12 +16,19 @@ def scrape_page(url, cursor):
     # instead of just running request directly with the url like i did above, i will add the headers like this:
     response = requests.get(url, headers=headers)
 
-
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
+        data = []
+
         for link in soup.find_all('a'):
             href = link.get('href')
             if href:
+                data.append(href)
+
+        return data
+    else:
+        print(f"chairmo! ah no see the page retrieve o. You sef see the status code: ")
+
                 save_to_db(cursor, href) # i added cursor before href here instead of just href since i called it earlier
                 #i think i should add a way to let me know it did successfully with a print statement
                 print(f"chairmo e don save o: {href}")
