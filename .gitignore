@@ -130,7 +130,6 @@ commit.py
 
 # created subfolder
 v1-CLI/data
-#v1-CLI/
 # Ignore any other sensitive information
 v1-CLI/secrets.json
 v1-CLI/api_keys.json
