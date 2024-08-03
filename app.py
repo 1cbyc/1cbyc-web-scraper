@@ -36,7 +36,7 @@ def download(db_name):
     if os.path.exists(file_path):
         return send_file(file_path, as_attachment=True)
     else:
-        return "File not found."
+        return "Ah no see the file o"
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
