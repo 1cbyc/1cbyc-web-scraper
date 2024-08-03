@@ -27,31 +27,39 @@ def scrape_page(url):
 
         return data
     else:
-        print(f"chairmo! ah no see the page retrieve o. You sef see the status code: ")
-
-                save_to_db(cursor, href) # i added cursor before href here instead of just href since i called it earlier
-                #i think i should add a way to let me know it did successfully with a print statement
-                print(f"chairmo e don save o: {href}")
-    # as chairman wey ah be, i decided to use elif since i now have multiple tasks
-    elif response.status_code == 404:
-        print(f"hey chief i could not retrieve the page o. Status code: {response.status_code}")
-    else:
-        print(f"hey chief i could not retrieve the page o. Status code: {response.status_code}. URL: {url}") # now i added the specific URL for error rendering, so if one url had issue, i will know
-
+        print(f"chairmo! ah no see the page retrieve o. You sef see the status code: {response.status_code}")
+        return None
+    #
+    #             save_to_db(cursor, href) # i added cursor before href here instead of just href since i called it earlier
+    #             #i think i should add a way to let me know it did successfully with a print statement
+    #             print(f"chairmo e don save o: {href}")
+    # # as chairman wey ah be, i decided to use elif since i now have multiple tasks
+    # elif response.status_code == 404:
+    #     print(f"hey chief i could not retrieve the page o. Status code: {response.status_code}")
+    # else:
+    #     print(f"hey chief i could not retrieve the page o. Status code: {response.status_code}. URL: {url}") # now i added the specific URL for error rendering, so if one url had issue, i will know
+    #
 
 # now i need to explain to the code that it is just not one task so it will be like this
 def scrape_multiple_pages(base_url, num_pages):
-    db_path = get_db_path(base_url)
-    conn, cursor = create_connection(db_path)
+    all_data = []
+    # db_path = get_db_path(base_url)
+    # conn, cursor = create_connection(db_path)
 
     for page in range(1, num_pages + 1):
         url = f"{base_url}{page}"
-        print(f"scraping this site: {url}") # this will log the url that is being scraped
-        scrape_page(url, cursor)
-# def scrape_multiple_pages(base_url, num_pages):
-#     for page in range(1, num_pages + 1):
-#         url = f"{base_url}{page}"
-#         scrape_page(url)
+        url = f"{base_url}?page={page}"
+        data = scrape_page(url)
+        if data:
+            all_data.extend(data)
+    return all_data
+#
+#         print(f"scraping this site: {url}") # this will log the url that is being scraped
+#         scrape_page(url, cursor)
+# # def scrape_multiple_pages(base_url, num_pages):
+# #     for page in range(1, num_pages + 1):
+# #         url = f"{base_url}{page}"
+# #         scrape_page(url)
 
 # after that is done, i will close connection then
     close_connection(conn)
