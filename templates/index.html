@@ -19,6 +19,7 @@
             h1 {
                 color: #2c3e50;
                 text-align: center;
+                margin-bottom: 20px;
             }
             form {
                 background-color: #ffffff;
@@ -27,12 +28,17 @@
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 max-width: 400px;
                 width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
             label {
                 color: #34495e;
                 display: block;
                 margin-bottom: 8px;
                 font-weight: bold;
+                text-align: left;
+                width: 100%;
             }
             input[type="text"], input[type="number"] {
                 width: 100%;
@@ -115,8 +121,8 @@
         </style>
     </head>
     <body>
-        <h1>Nsisong | Web Scraper</h1>
         <form method="post" action="/">
+            <h1>Nsisong | Web Scraper</h1>
             <label for="base_url">Base URL:</label>
             <div class="tooltip">
                 <input type="text" id="base_url" name="base_url" required>
@@ -133,11 +139,13 @@
         </form>
 
         {% if db_name %}
-        <h2>Scraping Completed</h2>
-        <p>
-            Download the scraped data: <a href="{{ url_for('download', db_name=db_name) }}">Download Now</a>
-        </p>
-        <button id="modalBtn">View Details</button>
+        <div id="modalBtnContainer" style="text-align: center; margin-top: 20px;">
+            <h2>Scraping Completed</h2>
+            <p>
+                Download the scraped data: <a href="{{ url_for('download', db_name=db_name) }}">Download Now</a>
+            </p>
+            <button id="modalBtn">View Details</button>
+        </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
