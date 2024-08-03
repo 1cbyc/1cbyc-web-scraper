@@ -1,6 +1,7 @@
+import os
 from flask import Flask, request, render_template, redirect, url_for
 from scraper.scraper import scrape_multiple_pages
-import os
+
 
 app = Flask(__name__)
 
