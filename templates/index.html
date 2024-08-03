@@ -129,24 +129,21 @@
             text-decoration: none;
             cursor: pointer;
         }
-        .image-container {
-            text-align: center;
-        }
         
         img {
             max-width: 60%;
             height: auto;
         }
 
-        .container {
-            text-align: center;
-        }
+        .image-container {
+            margin-bottom: 20px; /* Space between the image and the form */
+        }        
     </style>
 </head>
 <body>
-        <div class="image-container">
+        {% comment %} <div class="image-container">
             <img src="https://nsisong.com/wp-content/uploads/2023/09/cropped-logotype-with-text-default-text-color-edited-1-1.png" alt="Nsisong">
-        </div>
+        </div> {% endcomment %}
     <form method="post" action="/">
         <h1>Nsisong | Web Scraper</h1>
         <label for="base_url">Base URL:</label>
