@@ -167,7 +167,7 @@
         var span = document.getElementsByClassName("close")[0];
         var completionMessage = document.getElementById("completionMessage");
 
-        // Show completion message
+        // Show completion message with dynamic download URL
         function showCompletionMessage(downloadUrl) {
             document.getElementById("downloadLink").href = downloadUrl;
             completionMessage.style.display = "block";
@@ -178,9 +178,16 @@
             event.preventDefault(); // Prevent the default form submission
 
             // Simulate form submission (replace this with actual AJAX call)
-            setTimeout(function() {
-                showCompletionMessage('/path/to/download'); // Replace with actual download URL
-            }, 1000); // Simulate a delay for demonstration purposes
+            var formData = new FormData(event.target);
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                showCompletionMessage(`/download/${data.db_name}`);
+            })
+            .catch(error => console.error('Error:', error));
         });
 
         // When the user clicks on <span> (x), close the modal
