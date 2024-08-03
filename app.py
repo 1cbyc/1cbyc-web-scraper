@@ -11,6 +11,7 @@ def ensure_scheme(url):
     if not url.startswith(('http://', 'https://')):
         return 'http://' + url
     return url
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -19,6 +20,8 @@ def index():
 
         if not base_url or num_pages <= 0:
             return "this entry no valid o, try am again."
+
+        base_url = ensure_scheme(base_url)
 
         # # Start scraping
         # scrape_multiple_pages(base_url, num_pages)
