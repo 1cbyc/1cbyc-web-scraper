@@ -43,6 +43,8 @@ def index():
 
 @app.route('/data/<path:db_name>')
 def data(db_name):
+    # i realized /data/ was supposed to be it not /download/
+    # i also realized it should be define "data" not define "download"
     # i set "data" as base dir
     file_path = os.path.join('data', db_name)
     print(f"ah dey find the scraped data: {file_path}") # want to use this to debug output atleast
