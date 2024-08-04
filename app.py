@@ -14,8 +14,10 @@ def ensure_scheme(url):
 def index():
     if request.method == 'POST':
         data = request.get_json()
-        base_url = request.form['base_url']
-        num_pages = int(request.form['num_pages'])
+        if data:
+            base_url = data.ger
+            base_url = request.form['base_url']
+            num_pages = int(request.form['num_pages'])
 
         if not base_url or num_pages <= 0:
             # return "this entry no valid o, try am again."
