@@ -122,6 +122,7 @@
 
                 // Show the completion message
                 document.getElementById('downloadLink').href = data.db_name;
+                document.getElementById('downloadLink').href = '/download/' + data.db_name;
                 document.getElementById('completionMessage').style.display = 'block';
             })
             .catch(error => {
