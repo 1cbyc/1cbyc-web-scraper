@@ -15,9 +15,12 @@ def index():
     if request.method == 'POST':
         data = request.get_json()
         if data:
-            base_url = data.ger
+            base_url = data.get('base_url')
+            num_pages = int(data.get('num_pages'))
+        else:
             base_url = request.form['base_url']
             num_pages = int(request.form['num_pages'])
+
 
         if not base_url or num_pages <= 0:
             # return "this entry no valid o, try am again."
@@ -26,7 +29,8 @@ def index():
         base_url = ensure_scheme(base_url)
 
         # Start scraping
-        data = scrape_multiple_pages(base_url, num_pages)
+        scraped_data = scrape_multiple_pages(base_url, num_pages)
+        # data = scrape_multiple_pages(base_url, num_pages)
         db_name = save_to_db(base_url, data)
 
         # Return db_name as JSON response
