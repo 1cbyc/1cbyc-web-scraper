@@ -48,6 +48,9 @@ def download(db_name):
         return "Ah no see the file o"
 
 @app.route('/list_files')
+def list_files():
+    files = os.listdir('data')
+    return jsonify(files)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
