@@ -47,6 +47,8 @@ def download(db_name):
     else:
         return "Ah no see the file o"
 
+@app.route('/list_files')
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
