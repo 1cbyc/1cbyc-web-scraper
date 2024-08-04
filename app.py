@@ -41,6 +41,7 @@ def index():
 @app.route('/download/<path:db_name>')
 def download(db_name):
     file_path = os.path.join('data', db_name)
+    print(f"ah dey find the scraped data: {file_path}") # want to use this to debug output atleast
     if os.path.exists(file_path):
         return send_file(file_path, as_attachment=True)
     else:
