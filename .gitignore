@@ -81,13 +81,6 @@ config/
 *.ini
 *.cfg
 
-# Data files
-data/
-*.csv
-*.json
-*.xls
-*.xlsx
-
 # Keys and secrets
 *.pem
 *.key
@@ -120,7 +113,6 @@ cython_debug/
 bot_logs/
 backtests/
 strategies/
-data/
 
 # Ignore any other sensitive information
 secrets.json
