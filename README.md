@@ -73,9 +73,11 @@ like just download and install the db browser for SQLite:
 
 ### I pushed it live 
 
-since i have pushed the project for general use. you can now visit it by [webscraper.nsisong.com](https://webscraper.nsisong.com) to get started.
+1. since i have pushed the project for general use. you can now visit it by [webscraper.nsisong.com](https://webscraper.nsisong.com) to get started.
 however, to do that, since i did not push the "data" folder in my local machine to github, i did this in the command:
 `mkdir -p data && python app.py` also, i wrote a deployment shell file you should check for `deploy.sh` in this repo.
+2. I am ::warning:: you guys to use SQLite DB browser to read the file, else, you're on your own.
+
 
 #### All in all, you now know you can open the scraped_data.db file using an SQLite browser to inspect the data and not use my shitty method.
 
