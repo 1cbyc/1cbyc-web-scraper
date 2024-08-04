@@ -13,11 +13,13 @@ def ensure_scheme(url):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        data = request.get_json()
         base_url = request.form['base_url']
         num_pages = int(request.form['num_pages'])
 
         if not base_url or num_pages <= 0:
-            return "this entry no valid o, try am again."
+            # return "this entry no valid o, try am again."
+            return jsonify({"error": "this entry no valid"}), 400
 
         base_url = ensure_scheme(base_url)
 
