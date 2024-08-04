@@ -81,12 +81,7 @@ config/
 *.ini
 *.cfg
 
-# Data files
-data/
-*.csv
-*.json
-*.xls
-*.xlsx
+
 
 # Keys and secrets
 *.pem
