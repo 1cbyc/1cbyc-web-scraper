@@ -37,11 +37,11 @@ def index():
 
     return render_template('index.html')
 
-# @app.route('/download/<db_name>')
 @app.route('/download/<path:db_name>')
 def download(db_name):
     file_path = os.path.join('data', db_name)
     print(f"ah dey find the scraped data: {file_path}") # want to use this to debug output atleast
+    # ah use this find out if the file_path is correct
     if os.path.exists(file_path):
         return send_file(file_path, as_attachment=True)
     else:
