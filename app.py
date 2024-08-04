@@ -21,7 +21,6 @@ def index():
             base_url = request.form['base_url']
             num_pages = int(request.form['num_pages'])
 
-
         if not base_url or num_pages <= 0:
             # return "this entry no valid o, try am again."
             return jsonify({"error": "this entry no valid"}), 400
@@ -39,7 +38,7 @@ def index():
     return render_template('index.html')
 
 # @app.route('/download/<db_name>')
-@app.route('/download/<db_name>')
+@app.route('/download/<path:db_name>')
 def download(db_name):
     file_path = os.path.join('data', db_name)
     if os.path.exists(file_path):
