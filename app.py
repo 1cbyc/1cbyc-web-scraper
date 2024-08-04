@@ -6,8 +6,8 @@ from scraper.db_utils import save_to_db
 app = Flask(__name__)
 
 # # since i have data folder on gitignore, this statement will make sure it exists
-# if not os.path.exists('data')
-#     os.makedirs('data')
+if not os.path.exists('data'):
+    os.makedirs('data')
 
 def ensure_scheme(url):
     if not url.startswith(('http://', 'https://')):
