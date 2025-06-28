@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Zap, ArrowRight, Sparkles, Globe, Download } from 'lucide-react'
+import { Zap, ArrowRight, Sparkles, Globe, Download, Github } from 'lucide-react'
 
 const Hero = () => {
   return (
@@ -84,8 +84,9 @@ const Hero = () => {
             href="https://github.com/1cbyc/1cbyc-web-scraper"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary inline-block text-lg shadow-lg"
+            className="btn-secondary inline-block text-lg shadow-lg flex items-center gap-2"
           >
+            <Github className="w-5 h-5" />
             Star on GitHub
           </a>
         </div>
