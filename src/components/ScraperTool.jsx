@@ -66,18 +66,24 @@ const ScraperTool = () => {
       return
     }
 
+    // Prepend https:// if missing
+    let inputUrl = formData.base_url.trim()
+    if (!/^https?:\/\//i.test(inputUrl)) {
+      inputUrl = 'https://' + inputUrl
+    }
+
     setIsLoading(true)
     setResults(null)
 
     try {
-      // For now, we'll use a mock API endpoint
-      // In production, this would be your Cloudflare Worker URL
-      const response = await fetch('/api/scrape', {
+      // Use the full Worker URL for local testing. Switch back to '/api/scrape' for production if needed.
+      const apiUrl = 'https://1cbyc-web-scraper-api.nidfultechnologies.workers.dev/api/scrape'
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, base_url: inputUrl })
       })
 
       const data = await response.json()
