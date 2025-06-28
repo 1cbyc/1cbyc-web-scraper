@@ -1,12 +1,12 @@
-name = "web-scraper-api"
+name = "1cbyc-web-scraper-api"
 main = "src/worker.js"
 compatibility_date = "2024-01-01"
 
 [env.production]
-name = "web-scraper-api-prod"
+name = "1cbyc-web-scraper-api-prod"
 
 [env.staging]
-name = "web-scraper-api-staging"
+name = "1cbyc-web-scraper-api-staging"
 
 [[env.production.kv_namespaces]]
 binding = "SCRAPED_DATA"

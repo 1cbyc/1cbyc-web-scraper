@@ -1,1 +1,7 @@
+# Cloudflare Pages redirects for 1cbyc-web-scraper
+# Redirect API calls to Cloudflare Workers
+
+/api/* https://1cbyc-web-scraper-api.your-subdomain.workers.dev/:splat 200
+
+# Handle SPA routing
 /*    /index.html   200 
