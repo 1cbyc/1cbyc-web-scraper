@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Base colors
+        background: '#ffffff',
+        foreground: '#0f172a',
         // x.ai inspired colors
         primary: {
           50: '#f0f9ff',
