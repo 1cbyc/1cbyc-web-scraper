@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Scraper - Extract Data from Any Website</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .main-container {
+            padding: 2rem 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 1.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .scraping-option {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scraping-option:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(102, 126, 234, 0.05);
+        }
+
+        .scraping-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+
+        .scraping-option i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .loading-spinner {
+            display: none;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .file-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .alert-custom {
+            border-radius: 10px;
+            border: none;
+            padding: 15px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Header -->
+                <div class="text-center mb-4">
+                    <h1 class="text-white display-4 fw-bold">
+                        <i class="fas fa-spider me-3"></i>
+                        Advanced Web Scraper
+                    </h1>
+                    <p class="text-white-50 lead">Extract emails, contacts, links, and more from any website</p>
+                </div>
+
+                <!-- Main Card -->
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2 class="mb-0">
+                            <i class="fas fa-magic me-2"></i>
+                            Start Scraping
+                        </h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="scraperForm">
+                            <!-- URL Input -->
+                            <div class="mb-4">
+                                <label for="base_url" class="form-label fw-bold">
+                                    <i class="fas fa-link me-2"></i>Website URL
+                                </label>
+                                <input type="url" class="form-control" id="base_url" 
+                                       placeholder="https://example.com" required>
+                                <div class="form-text">Enter the website URL you want to scrape</div>
+                            </div>
+
+                            <!-- Number of Pages -->
+                            <div class="mb-4">
+                                <label for="num_pages" class="form-label fw-bold">
+                                    <i class="fas fa-layer-group me-2"></i>Number of Pages
+                                </label>
+                                <input type="number" class="form-control" id="num_pages" 
+                                       value="1" min="1" max="50" required>
+                                <div class="form-text">How many pages to scrape (max 50)</div>
+                            </div>
+
+                            <!-- Scraping Options -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-cogs me-2"></i>What to Scrape
+                                </label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="scraping-option" data-type="all">
+                                            <i class="fas fa-globe"></i>
+                                            <strong>Everything</strong>
+                                            <br><small class="text-muted">Emails, phones, links, social media</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="scraping-option" data-type="emails">
+                                            <i class="fas fa-envelope"></i>
+                                            <strong>Email Addresses</strong>
+                                            <br><small class="text-muted">Extract all email addresses</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="scraping-option" data-type="phones">
+                                            <i class="fas fa-phone"></i>
+                                            <strong>Phone Numbers</strong>
+                                            <br><small class="text-muted">Extract phone numbers</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="scraping-option" data-type="links">
+                                            <i class="fas fa-link"></i>
+                                            <strong>All Links</strong>
+                                            <br><small class="text-muted">Extract all links</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="scraping-option" data-type="social">
+                                            <i class="fas fa-share-alt"></i>
+                                            <strong>Social Media</strong>
+                                            <br><small class="text-muted">Social media links</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="scraping-option" data-type="contacts">
+                                            <i class="fas fa-address-book"></i>
+                                            <strong>Contact Info</strong>
+                                            <br><small class="text-muted">Contact forms and pages</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Output Format -->
+                            <div class="mb-4">
+                                <label for="output_format" class="form-label fw-bold">
+                                    <i class="fas fa-download me-2"></i>Output Format
+                                </label>
+                                <select class="form-select" id="output_format">
+                                    <option value="csv">CSV File</option>
+                                    <option value="json">JSON File</option>
+                                </select>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-play me-2"></i>
+                                    Start Scraping
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Loading Spinner -->
+                        <div class="loading-spinner text-center mt-4" id="loadingSpinner">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-3 text-muted">Scraping in progress... Please wait</p>
+                            <div class="progress-bar mt-2">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                        </div>
+
+                        <!-- Results Section -->
+                        <div id="resultsSection" class="mt-4" style="display: none;">
+                            <div class="alert alert-success alert-custom">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <strong>Scraping completed successfully!</strong>
+                                <div id="resultStats" class="mt-2"></div>
+                            </div>
+                            <div class="text-center">
+                                <a id="downloadLink" href="#" class="btn btn-success btn-lg">
+                                    <i class="fas fa-download me-2"></i>
+                                    Download Results
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Error Section -->
+                        <div id="errorSection" class="mt-4" style="display: none;">
+                            <div class="alert alert-danger alert-custom">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <strong>Error occurred:</strong>
+                                <span id="errorMessage"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="row mt-5">
+                    <div class="col-md-4 text-center">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="feature-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h5>Email Extraction</h5>
+                                <p class="text-muted">Extract email addresses from any webpage with advanced pattern matching</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="feature-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h5>Contact Scraping</h5>
+                                <p class="text-muted">Find phone numbers, addresses, and contact information</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-csv"></i>
+                                </div>
+                                <h5>CSV Export</h5>
+                                <p class="text-muted">Download results in CSV format for easy analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Files Section -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-history me-2"></i>
+                            Recent Scraped Files
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="fileList" class="file-list">
+                            <div class="text-center text-muted">
+                                <i class="fas fa-spinner fa-spin"></i> Loading files...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let selectedScrapeType = 'all';
+
+        // Initialize scraping options
+        document.querySelectorAll('.scraping-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.scraping-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedScrapeType = this.dataset.type;
+            });
+        });
+
+        // Select "Everything" by default
+        document.querySelector('[data-type="all"]').classList.add('selected');
+
+        // Form submission
+        document.getElementById('scraperForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const baseUrl = document.getElementById('base_url').value;
+            const numPages = document.getElementById('num_pages').value;
+            const outputFormat = document.getElementById('output_format').value;
+            
+            if (!baseUrl) {
+                showError('Please enter a valid URL');
+                return;
+            }
+
+            // Show loading
+            showLoading();
+            hideResults();
+            hideError();
+
+            // Simulate progress
+            simulateProgress();
+
+            // Send request
+            fetch('/scrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    base_url: baseUrl,
+                    num_pages: parseInt(numPages),
+                    scrape_type: selectedScrapeType,
+                    output_format: outputFormat
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                if (data.success) {
+                    showResults(data);
+                    loadFiles(); // Refresh file list
+                } else {
+                    showError(data.error || 'An error occurred during scraping');
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                showError('Network error: ' + error.message);
+            });
+        });
+
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        function showResults(data) {
+            document.getElementById('resultStats').innerHTML = `
+                <strong>${data.results_count}</strong> pages scraped successfully
+            `;
+            document.getElementById('downloadLink').href = data.download_url;
+            document.getElementById('resultsSection').style.display = 'block';
+        }
+
+        function hideResults() {
+            document.getElementById('resultsSection').style.display = 'none';
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorSection').style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('errorSection').style.display = 'none';
+        }
+
+        function simulateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 90) {
+                    clearInterval(interval);
+                } else {
+                    width += Math.random() * 10;
+                    progressFill.style.width = width + '%';
+                }
+            }, 500);
+        }
+
+        function loadFiles() {
+            fetch('/files')
+                .then(response => response.json())
+                .then(files => {
+                    const fileList = document.getElementById('fileList');
+                    if (files.length === 0) {
+                        fileList.innerHTML = '<div class="text-center text-muted">No files found</div>';
+                        return;
+                    }
+
+                    fileList.innerHTML = files.map(file => `
+                        <div class="file-item">
+                            <div>
+                                <strong>${file.name}</strong>
+                                <br><small class="text-muted">
+                                    ${formatFileSize(file.size)} • ${new Date(file.modified).toLocaleDateString()}
+                                </small>
+                            </div>
+                            <a href="${file.download_url}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    document.getElementById('fileList').innerHTML = 
+                        '<div class="text-center text-danger">Error loading files</div>';
+                });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Load files on page load
+        document.addEventListener('DOMContentLoaded', loadFiles);
+    </script>
+</body>
+</html> 
