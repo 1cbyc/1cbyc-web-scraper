@@ -66,10 +66,10 @@ const ScraperTool = () => {
       return
     }
 
-    // Prepend https:// if missing
+    // Prepend https:// if missing and trim spaces
     let inputUrl = formData.base_url.trim()
     if (!/^https?:\/\//i.test(inputUrl)) {
-      inputUrl = 'https://' + inputUrl
+      inputUrl = 'https://' + inputUrl.replace(/^\/*/, '')
     }
 
     setIsLoading(true)
@@ -191,10 +191,10 @@ const ScraperTool = () => {
                   Website URL
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   value={formData.base_url}
                   onChange={(e) => setFormData({ ...formData, base_url: e.target.value })}
-                  placeholder="https://example.com"
+                  placeholder="facebook.com or https://facebook.com"
                   className="input-field"
                   required
                 />

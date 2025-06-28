@@ -72,33 +72,23 @@ const Hero = () => {
           Export to CSV or JSON with just a few clicks.
         </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary text-lg px-8 py-4"
-            onClick={() => document.getElementById('scraper-tool').scrollIntoView({ behavior: 'smooth' })}
+        {/* Only two buttons: Start Scraping Free and Star on GitHub */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <a
+            href="#scraper-tool"
+            className="btn-primary inline-block text-lg shadow-lg"
           >
-            <Zap className="w-5 h-5 mr-2" />
             Start Scraping Free
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </motion.button>
-          
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-secondary text-lg px-8 py-4"
+          </a>
+          <a
+            href="https://github.com/1cbyc/1cbyc-web-scraper"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary inline-block text-lg shadow-lg"
           >
-            <Globe className="w-5 h-5 mr-2" />
-            Watch Demo
-          </motion.button>
-        </motion.div>
+            Star on GitHub
+          </a>
+        </div>
 
         {/* Stats */}
         <motion.div

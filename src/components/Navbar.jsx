@@ -47,9 +47,6 @@ const Navbar = () => {
             <a href="#how-it-works" className="text-dark-700 dark:text-dark-300 hover:text-primary-600 transition-colors">
               How it Works
             </a>
-            <a href="#pricing" className="text-dark-700 dark:text-dark-300 hover:text-primary-600 transition-colors">
-              Pricing
-            </a>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -94,13 +91,6 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
               >
                 How it Works
-              </a>
-              <a
-                href="#pricing"
-                className="block px-3 py-2 text-dark-700 dark:text-dark-300 hover:text-primary-600 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Pricing
               </a>
               <button
                 className="w-full mt-2 btn-primary"

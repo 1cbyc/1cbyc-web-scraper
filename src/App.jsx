@@ -6,7 +6,6 @@ import Hero from './components/Hero'
 import Features from './components/Features'
 import ScraperTool from './components/ScraperTool'
 import HowItWorks from './components/HowItWorks'
-import Pricing from './components/Pricing'
 import Footer from './components/Footer'
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
             <Features />
             <ScraperTool />
             <HowItWorks />
-            <Pricing />
             <Footer />
           </motion.div>
         } />
