@@ -1,0 +1,19 @@
+name = "web-scraper-api"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "web-scraper-api-prod"
+
+[env.staging]
+name = "web-scraper-api-staging"
+
+[[env.production.kv_namespaces]]
+binding = "SCRAPED_DATA"
+id = "your-kv-namespace-id"
+preview_id = "your-preview-kv-namespace-id"
+
+[[env.staging.kv_namespaces]]
+binding = "SCRAPED_DATA"
+id = "your-staging-kv-namespace-id"
+preview_id = "your-staging-preview-kv-namespace-id" 
