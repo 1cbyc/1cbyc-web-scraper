@@ -3,4 +3,5 @@ uvicorn[standard]
 playwright
 beautifulsoup4
 gunicorn
-requests 
+requests
+asgiref 
