@@ -6,7 +6,11 @@ import re
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
 
-app = FastAPI()
+app = FastAPI(
+    title="1cbyc Web Scraper API",
+    description="A FastAPI-based web scraper that extracts emails, phone numbers, and links from websites",
+    version="1.0.0"
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -45,6 +49,19 @@ def extract_links(soup: BeautifulSoup) -> List[str]:
             continue
         links.append(href)
     return links
+
+@app.get("/")
+async def root():
+    return {
+        "message": "1cbyc Web Scraper API",
+        "version": "1.0.0",
+        "endpoints": {
+            "scrape": "/scrape (POST) - Scrape emails, phones, and links from a URL",
+            "docs": "/docs - Interactive API documentation",
+            "redoc": "/redoc - Alternative API documentation"
+        },
+        "usage": "Send a POST request to /scrape with a JSON body containing 'url' field"
+    }
 
 @app.post("/scrape")
 async def scrape(request: ScrapeRequest):
